@@ -15,6 +15,17 @@ var stringifyJSON = function(obj) {
     return true;
   }
 
+  var isStringifiableObj = function(obj) {
+    var isStringifiable = false;
+    for (var item in obj) {
+      if (obj[item] !== undefined && typeof obj[item] !== 'function') {
+        isStringifiable = true;
+        break;
+      }
+    }
+    return isStringifiable;
+  };
+
   if (typeof obj === 'number' || obj === null || typeof obj === 'boolean') {
   	return result += obj;
   } else if (typeof obj === 'string') {
@@ -32,7 +43,7 @@ var stringifyJSON = function(obj) {
   		return result;
   	}
   } else if (typeof obj === 'object') {
-    if (isEmptyObject(obj)) {
+    if (isEmptyObject(obj) || !isStringifiableObj(obj)) {
       return '{}';
     } else {
       result += '{';
