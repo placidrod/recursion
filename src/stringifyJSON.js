@@ -10,5 +10,9 @@ var stringifyJSON = function(obj) {
   	return result += obj;
   } else if (typeof obj === 'string') {
   	return result += '"' + obj + '"';
+  } else if (Array.isArray(obj)) {
+  	if(obj.length === 0) {
+  		return result += '[]';
+  	}
   }
 };
