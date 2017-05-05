@@ -34,6 +34,14 @@ var stringifyJSON = function(obj) {
   } else if (typeof obj === 'object') {
     if (isEmptyObject(obj)) {
       return '{}';
+    } else {
+      result += '{';
+      for(var item in obj) {
+        result += '"' + item + '":' + stringifyJSON(obj[item]) + ',';
+      }
+      result = result.slice(0, -1);
+      result += '}';
+      return result;
     }
   }
 };
