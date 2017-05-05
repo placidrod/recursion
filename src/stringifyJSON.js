@@ -8,5 +8,7 @@ var stringifyJSON = function(obj) {
 
   if (typeof obj === 'number' || obj === null || typeof obj === 'boolean') {
   	return result += obj;
+  } else if (typeof obj === 'string') {
+  	return result += '"' + obj + '"';
   }
 };
