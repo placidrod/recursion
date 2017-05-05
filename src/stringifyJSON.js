@@ -6,7 +6,7 @@
 var stringifyJSON = function(obj) {
   var result = '';
 
-  if (typeof obj === 'number') {
+  if (typeof obj === 'number' || obj === null) {
   	return result += obj;
   }
 };
