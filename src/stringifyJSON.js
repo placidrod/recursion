@@ -13,6 +13,14 @@ var stringifyJSON = function(obj) {
   } else if (Array.isArray(obj)) {
   	if(obj.length === 0) {
   		return result += '[]';
+  	} else {
+  		result += '[';
+  		obj.forEach(function(item, index) {
+  			result += stringifyJSON(item) + ',';
+  		});
+  		result = result.slice(0, -1);
+  		result += ']';
+  		return result;
   	}
   }
 };
