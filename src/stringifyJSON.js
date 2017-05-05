@@ -6,6 +6,15 @@
 var stringifyJSON = function(obj) {
   var result = '';
 
+  var isEmptyObject = function(obj) {
+    for (var prop in obj) {
+      if (obj.hasOwnProperty(prop)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   if (typeof obj === 'number' || obj === null || typeof obj === 'boolean') {
   	return result += obj;
   } else if (typeof obj === 'string') {
@@ -22,5 +31,9 @@ var stringifyJSON = function(obj) {
   		result += ']';
   		return result;
   	}
+  } else if (typeof obj === 'object') {
+    if (isEmptyObject(obj)) {
+      return '{}';
+    }
   }
 };
